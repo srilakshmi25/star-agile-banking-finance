@@ -12,5 +12,21 @@
   - name : Start Docker Service
     command : sudo systemctl start docker
 
+    - name: Log in to private Docker registry
+      docker_login:
+        registry: "{{ https://hub.docker.com/ }}"
+        username: "{{ vedanshsri }}"
+        password: "{{ dckr_pat_oOJp6ha0BOxnyzJbQRqLvh0Fboc }}"
+      register: login_result
+      no_log: true  # Prevents password from being logged
+
+    - name: Pull image from private registry
+      docker_image:
+        name: "{{ full_image_name }}"
+        source: pull
+        state: present
+        force_source: yes  # Forces pull even if image exists
+      register: pull_result
+
   - name: Deploy Docker Container
-    command: docker run -dt -p 8091:8091 --name c000 myimg1
+    command: docker run -dt -p 8091:8091 --name c000 vedanshsri/myimg2
