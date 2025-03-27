@@ -22,11 +22,11 @@
 
     - name: Pull image from private registry
       docker_image:
-        name: "{{ full_image_name }}"
+        name: "{{ vedanshsri/myimg6 }}"
         source: pull
         state: present
         force_source: yes  # Forces pull even if image exists
       register: pull_result
 
-  - name: Deploy Docker Container
-    command: docker run -dt -p 8091:8091 --name c000 vedanshsri/myimg2
+    - name: Deploy Docker Container
+      command: docker run -dt -p 8091:8091 --name c000 vedanshsri/myimg2
