@@ -14,15 +14,15 @@
 
   - name : Log in to private Docker registry
     docker_login :
-        registry: "{{ "https://hub.docker.com/" }}"
-        username: "{{ "vedanshsri" }}"
-        password: "{{ "dckr_pat_oOJp6ha0BOxnyzJbQRqLvh0Fboc" }}"
+        registry: "{{ 'https://hub.docker.com/' }}"
+        username: "{{ 'vedanshsri' }}"
+        password: "{{ 'dckr_pat_oOJp6ha0BOxnyzJbQRqLvh0Fboc' }}"
         register: login_result
         no_log: true  # Prevents password from being logged
 
   - name: Pull image from private registry
     docker_image:
-        name: "{{ "vedanshsri/myimg6" }}"
+        name: "{{ 'vedanshsri/myimg6' }}"
         source: pull
         state: present
         force_source: yes  # Forces pull even if image exists
